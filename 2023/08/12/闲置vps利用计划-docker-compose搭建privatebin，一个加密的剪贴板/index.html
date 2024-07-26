@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>闲置VPS利用——Docker-compose搭建PrivateBin，一个加密的剪贴板 | 云匿博客</title>
+    <meta name="generator" content="VuePress 1.5.2">
+    <script async="true" data-website-id="5c55dcab-115e-4cca-a26c-eca2276dfe02" src="https://tj.naaa.top/script.js"></script>
+    <script data-ad-client="ca-pub-5818850638223663" async="true" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <link rel="icon" href="/mylogo.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/mylogo.png">
+    <link rel="mask-icon" href="/mylogo.png" color="#3eaf7c">
+    <link rel="alternate" type="application/rss+xml" href="https://www.yunieebk.com/rss.xml" title="云匿博客 RSS Feed">
+    <link rel="alternate" type="application/atom+xml" href="https://www.yunieebk.com/feed.atom" title="云匿博客 Atom Feed">
+    <link rel="alternate" type="application/json" href="https://www.yunieebk.com/feed.json" title="云匿博客 JSON Feed">
+    <meta name="description" content="加密的保护隐私的剪贴板。让你的分享更放心。">
+    <meta name="theme-color" content="#2c3e50">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-TileImage" content="/mylogo.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preload" href="/assets/css/0.styles.d6b0261c.css" as="style"><link rel="preload" href="/assets/js/app.24a469d2.js" as="script"><link rel="preload" href="/assets/js/6.c9fc6031.js" as="script"><link rel="preload" href="/assets/js/3.806a905d.js" as="script"><link rel="preload" href="/assets/js/20.c2a9e3a9.js" as="script"><link rel="prefetch" href="/assets/js/10.8d1683d1.js"><link rel="prefetch" href="/assets/js/11.99d25a56.js"><link rel="prefetch" href="/assets/js/12.00d73611.js"><link rel="prefetch" href="/assets/js/13.38e8b86e.js"><link rel="prefetch" href="/assets/js/14.20047138.js"><link rel="prefetch" href="/assets/js/15.3563b070.js"><link rel="prefetch" href="/assets/js/16.758243d4.js"><link rel="prefetch" href="/assets/js/17.77864efb.js"><link rel="prefetch" href="/assets/js/18.d83bcc28.js"><link rel="prefetch" href="/assets/js/19.c24347c6.js"><link rel="prefetch" href="/assets/js/21.4342b825.js"><link rel="prefetch" href="/assets/js/22.0806c942.js"><link rel="prefetch" href="/assets/js/23.e4a01355.js"><link rel="prefetch" href="/assets/js/24.eabfd901.js"><link rel="prefetch" href="/assets/js/25.b4a97c2c.js"><link rel="prefetch" href="/assets/js/26.a5a2cf99.js"><link rel="prefetch" href="/assets/js/27.88f8c907.js"><link rel="prefetch" href="/assets/js/28.7445eb87.js"><link rel="prefetch" href="/assets/js/29.2a21ce41.js"><link rel="prefetch" href="/assets/js/30.58cf1a80.js"><link rel="prefetch" href="/assets/js/31.f6d9a037.js"><link rel="prefetch" href="/assets/js/32.93625e0d.js"><link rel="prefetch" href="/assets/js/33.c4cd6450.js"><link rel="prefetch" href="/assets/js/34.ef65f9db.js"><link rel="prefetch" href="/assets/js/35.490682c9.js"><link rel="prefetch" href="/assets/js/36.1a144e46.js"><link rel="prefetch" href="/assets/js/37.b25f3162.js"><link rel="prefetch" href="/assets/js/38.eddb5c7a.js"><link rel="prefetch" href="/assets/js/39.c33f74b1.js"><link rel="prefetch" href="/assets/js/4.cfe3f2d7.js"><link rel="prefetch" href="/assets/js/40.9eb72721.js"><link rel="prefetch" href="/assets/js/41.a0946fa3.js"><link rel="prefetch" href="/assets/js/42.713e4495.js"><link rel="prefetch" href="/assets/js/43.2998efb7.js"><link rel="prefetch" href="/assets/js/44.eee9e926.js"><link rel="prefetch" href="/assets/js/45.8563b08e.js"><link rel="prefetch" href="/assets/js/5.d2284ad2.js"><link rel="prefetch" href="/assets/js/7.bd7b8040.js"><link rel="prefetch" href="/assets/js/8.89863e12.js"><link rel="prefetch" href="/assets/js/9.cf6e7eb0.js"><link rel="prefetch" href="/assets/js/vuejs-paginate.1e3a7564.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.d6b0261c.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div id="vuepress-theme-blog__global-layout"><section id="header-wrapper"><header id="header"><div class="header-wrapper"><nav class="navbar navbar-expand-md navbar-light fixed-top"><div class="container"><a href="/" class="navbar-brand"><img src="/avatars/mylogo.png">
+            云匿博客
+          </a> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg> <div class="collapse navbar-collapse"><ul class="navbar-nav ml-auto"><li class="nav-item"><a href="/" class="nav-link">Blog</a></li><li class="nav-item"><a href="/tag/" class="nav-link">Tags</a></li> <div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <a href="/rss.xml" class="feed"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></ul></div></div></nav></div></header></section> <div class="container wrapmain"><div id="vuepress-theme-blog__post-layout"><article itemscope="itemscope" itemtype="https://schema.org/BlogPosting" class="vuepress-blog-theme-content"><div class="row justify-content-center"><div class="col-md-8"><header><span class="text-muted"><div class="post-meta"><!----> <div class="post-meta-date"><time pubdate itemprop="datePublished" datetime="2023-08-12T10:59:42.000Z">
+      Sat, Aug 12 2023
+    </time></div> <!----></div></span> <h1 itemprop="name headline" class="article-head mt-3">
+            闲置VPS利用——Docker-compose搭建PrivateBin，一个加密的剪贴板
+          </h1> <p class="lead">加密的保护隐私的剪贴板。让你的分享更放心。</p> <div><span><div class="d-flex align-items-center"><div class="profile-avatar"><img src="/avatars/myicon.webp" alt="yuniee" class="avatar-image"></div> <div><span>yuniee</span>  
+        <a href="https://www.yunieebk.com/" target="_blank" rel="noopener noreferrer" class="external btn btn-sm btn-outline-dark">Follow</a></div></div></span><span><div class="d-flex align-items-center"><div class="profile-avatar"><!----></div> <!----></div></span><span><div class="d-flex align-items-center"><div class="profile-avatar"><!----></div> <!----></div></span><span><div class="d-flex align-items-center"><div class="profile-avatar"><!----></div> <!----></div></span></div></header></div></div> <div class="row justify-content-center text-center mt-4 mb-40"><div class="col-md-9"><img src="https://s2.loli.net/2023/08/16/kmBTW3Uh8be6SH4.png" class="featured-img"></div></div> <div class="row justify-content-center"><div class="col-md-8"><div itemprop="articleBody" class="content__default"><h1 id="闲置vps利用-docker-compose搭建privatebin，一个加密的剪贴板"><a href="#闲置vps利用-docker-compose搭建privatebin，一个加密的剪贴板" class="header-anchor">#</a> 闲置VPS利用——Docker-compose搭建PrivateBin，一个加密的剪贴板</h1> <h2 id="💬前言"><a href="#💬前言" class="header-anchor">#</a> 💬前言</h2> <p>有时候想分享一段代码或者一些想要分享一些文字并对隐私希望有所保护，便可以试试这个PrivateBin。让我们更加放心的分享。</p> <h2 id="🌳项目介绍"><a href="#🌳项目介绍" class="header-anchor">#</a> 🌳项目介绍</h2> <p>根据官方的介绍，PrivateBin是一个极简主义的开源在线粘贴板，服务器对已粘贴数据一无所知。数据在浏览器中使用256位AES算法和Galois Counter模式进行加密和解密。</p> <ul><li><p>作为服务器管理员，您不必担心用户发布的内容在您所在国家被视为非法。您对过去的任何粘贴内容都有合理否认权。如果需要或要求，您可以从系统中删除任何粘贴。。</p></li> <li><p>类似Pastebin的系统用于存储文本文档、代码示例等。数据发送到服务器时进行加密。</p></li> <li><p>发送到服务器的数据加密。</p></li> <li><p>可以设置一个密码来阅读粘贴内容。这进一步保护了粘贴内容，并防止没有密码的人能够通过链接读取它。</p> <p>此外，它还支持markdown语法，使用起来还是很方便的。</p></li></ul> <p>下面是项目的截图</p> <p><img src="https://s2.loli.net/2023/08/16/Biw3Jc2dXWYMPbL.png" alt="2023-08-16 211935.png"></p> <p>该项目官网：<a href="https://privatebin.info/" target="_blank" rel="noopener noreferrer">https://privatebin.info/<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <p>该项目的GitHub地址：<a href="https://github.com/PrivateBin/PrivateBin" target="_blank" rel="noopener noreferrer">https://github.com/PrivateBin/PrivateBin<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <p>参考官方docker配置：<a href="https://github.com/PrivateBin/PrivateBin/wiki/Docker" target="_blank" rel="noopener noreferrer">https://github.com/PrivateBin/PrivateBin/wiki/Docker<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <h2 id="🏠开始搭建"><a href="#🏠开始搭建" class="header-anchor">#</a> 🏠开始搭建</h2> <p>因为本人觉得docker-compose使用起来更便捷，更舒服，所以根据官方docker配置，修改成了docker-compose文件。</p> <ol><li><p>更新系统</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">apt</span> update -y <span class="token operator">&amp;&amp;</span> <span class="token function">apt</span> upgrade -y
+</code></pre></div></li> <li><p>安装必要工具</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">apt</span> <span class="token function">install</span> <span class="token function">wget</span> <span class="token function">curl</span> <span class="token function">sudo</span> <span class="token function">vim</span> <span class="token function">git</span>  -y
+</code></pre></div></li></ol> <h3 id="🐋安装docker，docker-compose并配置"><a href="#🐋安装docker，docker-compose并配置" class="header-anchor">#</a> 🐋安装docker，docker-compose并配置</h3> <ol><li><p>下载docker</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">wget</span> -qO- get.docker.com <span class="token operator">|</span> <span class="token function">bash</span>
+</code></pre></div></li> <li><p>设置docker开机自启</p> <div class="language-bash extra-class"><pre class="language-bash"><code>systemctl <span class="token builtin class-name">enable</span> docker
+</code></pre></div></li> <li><p>重启docker</p> <div class="language-bash extra-class"><pre class="language-bash"><code>systemctl restart docker
+</code></pre></div></li> <li><p>安装docker-compose</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">sudo</span> <span class="token function">curl</span> -L <span class="token string">&quot;https://github.com/docker/compose/releases/download/1.29.2/docker-compose-<span class="token variable"><span class="token variable">$(</span><span class="token function">uname</span> -s<span class="token variable">)</span></span>-<span class="token variable"><span class="token variable">$(</span><span class="token function">uname</span> -m<span class="token variable">)</span></span>&quot;</span> -o /usr/local/bin/docker-compose
+</code></pre></div></li> <li><p>docker-compose赋权</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">sudo</span> <span class="token function">chmod</span> +x /usr/local/bin/docker-compose
+</code></pre></div></li></ol> <h3 id="🔪安装"><a href="#🔪安装" class="header-anchor">#</a> 🔪安装</h3> <ol><li><p>新建文件夹</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">mkdir</span> -p /opt/privatebin/data  /opt/privatebin/config
+</code></pre></div></li> <li><p>修改文件夹权限</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">chmod</span> <span class="token number">777</span> /opt/privatebin/data
+</code></pre></div></li> <li><p>下载配置文件</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">wget</span> -O /opt/privatebin/config/conf.sample.php  https://raw.githubusercontent.com/PrivateBin/PrivateBin/master/cfg/conf.sample.php
+</code></pre></div></li> <li><p>然后将示例配置文件复制一份,并重命名</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">cp</span> /opt/privatebin/config/conf.sample.php   /opt/privatebin/config/conf.php
+</code></pre></div></li> <li><p>进入文件夹</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token builtin class-name">cd</span> /opt/privatebin
+</code></pre></div></li> <li><p>创建一个docker-compose文件</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">nano</span> docker-compose.yml
+</code></pre></div></li> <li><p>输入配置文件</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">'3'</span>
+<span class="token key atrule">services</span><span class="token punctuation">:</span>
+  <span class="token key atrule">privatebin</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> privatebin/nginx<span class="token punctuation">-</span>fpm<span class="token punctuation">-</span>alpine
+    <span class="token key atrule">container_name</span><span class="token punctuation">:</span> privatebin
+    <span class="token key atrule">restart</span><span class="token punctuation">:</span> always
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> PUID=1000
+      <span class="token punctuation">-</span> PGID=1000
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token string">&quot;8080:8080&quot;</span> <span class="token comment">#左边端口可以修改</span>
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> /opt/privatebin/config/conf.php<span class="token punctuation">:</span>/srv/cfg/conf.php<span class="token punctuation">:</span>ro
+      <span class="token punctuation">-</span> /opt/privatebin/data<span class="token punctuation">:</span>/srv/data
+    <span class="token key atrule">read_only</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+</code></pre></div></li> <li><p>运行docker-compose</p> <div class="language-bash extra-class"><pre class="language-bash"><code>docker-compose up -d
+</code></pre></div></li> <li><p>测试是否成功</p></li></ol> <p>在浏览输入：http://ip:8080 (输入你自己修改的映射端口)</p> <p><strong>注意！一定要配置https访问，否则无法正常使用</strong></p> <h2 id="📕后记"><a href="#📕后记" class="header-anchor">#</a> 📕后记</h2> <p>如果想要配置反向代理使用域名访问网页，请参考这篇文章： <a href="https://www.yunieebk.com/2023/07/30/caddy%E7%9A%84%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8%EF%BC%8C%E4%B8%8B%E8%BD%BDcaddy%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E5%92%8C%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%8F%91-%E7%BB%AD%E6%9C%9Fssl-%E8%AF%81%E4%B9%A6/" target="_blank" rel="noopener noreferrer">Caddy的基础使用，下载Caddy并部署反向代理和自动签发, 续期SSL 证书<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <p>在PrivateBin配置文件中配置yourls短链接请看这篇：<a href="https://www.yunieebk.com/2023/08/13/%E5%9C%A8privatebin%E4%B8%AD%E4%BD%BF%E7%94%A8yourls%E7%9F%AD%E9%93%BE%E6%8E%A5%E6%9C%8D%E5%8A%A1/" target="_blank" rel="noopener noreferrer">在PrivateBin中使用YOURLS短链接服务<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <h3 id="配置文件详解（仅供参考）"><a href="#配置文件详解（仅供参考）" class="header-anchor">#</a> 配置文件详解（仅供参考）</h3> <p>来源: <a href="http://www.senra.me/deploy-your-private-online-clipboard-using-privatebin/" target="_blank" rel="noopener noreferrer">senra的博客<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <div class="language-php extra-class"><pre class="language-php"><code>    ;<span class="token php language-php"><span class="token delimiter important">&lt;?php</span> <span class="token function">http_response_code</span><span class="token punctuation">(</span><span class="token number">403</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">/</span><span class="token operator">*</span>
+    <span class="token punctuation">;</span> PrivateBin 配置文件
+    <span class="token punctuation">;</span>
+    <span class="token punctuation">;</span> 每个选项的解释可以参考 https<span class="token punctuation">:</span><span class="token comment">//github.com/PrivateBin/PrivateBin/wiki/Configuration.</span>
+    <span class="token punctuation">;</span> 本配置由Senra翻译
+     
+    <span class="token punctuation">[</span>main<span class="token punctuation">]</span>
+    <span class="token punctuation">;</span> <span class="token punctuation">(</span>可选<span class="token punctuation">)</span> 设置一个用于在网站上显示的项目名<span class="token punctuation">(</span>网站名<span class="token punctuation">)</span>
+    <span class="token punctuation">;</span> name <span class="token operator">=</span> <span class="token double-quoted-string string">&quot;PrivateBin&quot;</span>
+     
+    <span class="token punctuation">;</span> 启用或禁用讨论功能<span class="token punctuation">(</span>针对Paste内容留言讨论<span class="token punctuation">)</span>，默认为<span class="token boolean constant">true</span>
+    discussion <span class="token operator">=</span> <span class="token boolean constant">true</span>
+     
+    <span class="token punctuation">;</span> 预选讨论功能<span class="token punctuation">(</span>是否在创建新的Paste时默认勾选开启讨论<span class="token punctuation">)</span>，默认为<span class="token boolean constant">false</span>
+    opendiscussion <span class="token operator">=</span> <span class="token boolean constant">false</span>
+     
+    <span class="token punctuation">;</span> 启用或禁用密码功能，默认为<span class="token boolean constant">true</span>
+    password <span class="token operator">=</span> <span class="token boolean constant">true</span>
+     
+    <span class="token punctuation">;</span> 启用或禁用文件上传功能，默认<span class="token boolean constant">false</span>
+    fileupload <span class="token operator">=</span> <span class="token boolean constant">false</span>
+     
+    <span class="token punctuation">;</span> <span class="token punctuation">(</span>是否在创建新的Paste时默认勾选阅后即焚<span class="token punctuation">)</span>，默认为<span class="token boolean constant">false</span>
+    burnafterreadingselected <span class="token operator">=</span> <span class="token boolean constant">false</span>
+     
+    <span class="token punctuation">;</span> 当启用了阅后即焚的Paste被第一次访问后马上进行删除，而不是等待一次成功的解密
+    <span class="token punctuation">;</span> 按照说明，PrivateBin默认在你浏览器成功解密后才会使用js来做一个回调以便删除Paste，这个功能将无视你是否成功解密，直接进行删除
+    instantburnafterreading <span class="token operator">=</span> <span class="token boolean constant">false</span>
+     
+    <span class="token punctuation">;</span> 预选的默认显示模式<span class="token punctuation">(</span>在创建新的Paste时默认选择的显示\渲染格式<span class="token punctuation">)</span>，默认为<span class="token double-quoted-string string">&quot;plaintext&quot;</span><span class="token punctuation">(</span>纯文本<span class="token punctuation">)</span>
+    <span class="token punctuation">;</span> 请确保这个值存在于<span class="token punctuation">[</span>formatter_options<span class="token punctuation">]</span>中
+    defaultformatter <span class="token operator">=</span> <span class="token double-quoted-string string">&quot;plaintext&quot;</span>
+     
+    <span class="token punctuation">;</span> <span class="token punctuation">(</span>可选<span class="token punctuation">)</span> 设置一种代码高亮的主题，可以在 css<span class="token operator">/</span>prettify<span class="token operator">/</span> 目录中查看
+    <span class="token punctuation">;</span> syntaxhighlightingtheme <span class="token operator">=</span> <span class="token double-quoted-string string">&quot;sons-of-obsidian&quot;</span>
+     
+    <span class="token punctuation">;</span> 每个Paste或者评论留言的大小限制，单位为bytes，默认是<span class="token number">2</span>Mb
+    sizelimit <span class="token operator">=</span> <span class="token number">2097152</span>
+     
+    <span class="token punctuation">;</span> 使用的模板，默认是<span class="token double-quoted-string string">&quot;bootstrap&quot;</span> <span class="token punctuation">(</span>tpl<span class="token operator">/</span>bootstrap<span class="token punctuation">.</span>php<span class="token punctuation">)</span>
+    template <span class="token operator">=</span> <span class="token double-quoted-string string">&quot;bootstrap&quot;</span>
+     
+    <span class="token punctuation">;</span> <span class="token punctuation">(</span>可选<span class="token punctuation">)</span> 显示的提示
+    <span class="token punctuation">;</span> notice <span class="token operator">=</span> <span class="token double-quoted-string string">&quot;Note: This is a test service: Data may be deleted anytime. Kittens will die if you abuse this service.&quot;</span>
+     
+    <span class="token punctuation">;</span> 默认情况下PrivateBin会根据用户的浏览器设置来猜测用户使用的语言，启用该选项将使得用户能够在菜单中选择语言
+    <span class="token punctuation">;</span> 语言的选择记录会以session cookie的形式存储在你的浏览器中，保存到你的浏览器关闭之前
+    languageselection <span class="token operator">=</span> <span class="token boolean constant">false</span>
+     
+    <span class="token punctuation">;</span> 设置默认语言，默认为English
+    <span class="token punctuation">;</span> 如果这个选项被设置了且上一个语言选择功能被关闭，则这将成为唯一的语言
+    <span class="token punctuation">;</span> languagedefault <span class="token operator">=</span> <span class="token double-quoted-string string">&quot;en&quot;</span>
+     
+    <span class="token punctuation">;</span> <span class="token punctuation">(</span>可选<span class="token punctuation">)</span> 链接缩短程序的地址<span class="token punctuation">(</span><span class="token constant">API</span><span class="token punctuation">)</span>，通过配置这个能在创建新的Paste时同时创建短链以方便使用
+    <span class="token punctuation">;</span> 需要注意的是请选择可靠的或者是自建的短链，因为这会使得短链提供者能够获取你带有加密密钥的完整链接
+    <span class="token punctuation">;</span> urlshortener <span class="token operator">=</span> <span class="token double-quoted-string string">&quot;https://shortener.example.com/api?link=&quot;</span>
+     
+    <span class="token punctuation">;</span> <span class="token punctuation">(</span>可选<span class="token punctuation">)</span> 是用户能够一键生成一个用于分享Paste链接的二维码
+    <span class="token punctuation">;</span> 这个会对你创建Paste以及浏览Paste的页面同时生效
+    <span class="token punctuation">;</span> qrcode <span class="token operator">=</span> <span class="token boolean constant">true</span>
+     
+    <span class="token punctuation">;</span> <span class="token punctuation">(</span>可选<span class="token punctuation">)</span> 使用基于<span class="token constant">IP</span>的评论头像来区分一条评论是否是来自于一个使用了相同的用户名的不同用户是一个比较差劲的机制。
+    <span class="token punctuation">;</span> 因为这种情况下如果服务器的salt泄露，可以通过为<span class="token constant">IP</span>生成彩虹版的方式来碰撞获得所有非匿名的评论者的<span class="token constant">IP</span>
+    <span class="token punctuation">;</span> 这个选项可以被设置为 none <span class="token operator">/</span> vizhash <span class="token operator">/</span> <span class="token function">identicon</span><span class="token punctuation">(</span>默认<span class="token punctuation">)</span>
+    <span class="token punctuation">;</span> icon <span class="token operator">=</span> none
+     
+    <span class="token punctuation">;</span> Content Security <span class="token function">Policy</span><span class="token punctuation">(</span><span class="token constant">CSP</span><span class="token punctuation">)</span>这个<span class="token constant">HTTP</span>头允许网站限制什么内容可以在它的页面加载<span class="token punctuation">(</span>用于防止插入恶意内容<span class="token punctuation">)</span>
+    <span class="token punctuation">;</span> 如果你修改模板来添加第三方域名的自定义脚本<span class="token punctuation">(</span>比如追踪脚本或者使用了某些抗<span class="token constant">D</span>服务<span class="token punctuation">)</span>，你可能需要修改这个。
+    <span class="token punctuation">;</span> 可以参考 https<span class="token punctuation">:</span><span class="token comment">//content-security-policy.com/ 来配置</span>
+    <span class="token punctuation">;</span> 注意<span class="token punctuation">:</span> 如果你使用bootstrap主题，你可以去除sandbox限制中的allow<span class="token operator">-</span>popups
+    <span class="token punctuation">;</span> cspheader <span class="token operator">=</span> <span class="token double-quoted-string string">&quot;default-src 'none'; manifest-src 'self'; connect-src *; form-action 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; referrer no-referrer; sandbox allow-same-origin allow-scripts allow-forms allow-popups&quot;</span>
+     
+    <span class="token punctuation">;</span> 和PrivateBin Alpha <span class="token number">0.19</span>保持兼容，会导致降低一定的安全性
+    <span class="token punctuation">;</span> 如果启用这项，将使用base64<span class="token punctuation">.</span>js的<span class="token number">1.7</span>版本，而不是<span class="token number">2.1</span><span class="token number">.9</span>版本，并且在<span class="token constant">HMAC</span>中将使用sha1而不是<span class="token function">sha256</span><span class="token punctuation">(</span>用于生成删除Paste的token<span class="token punctuation">)</span>
+    zerobincompatibility <span class="token operator">=</span> <span class="token boolean constant">false</span>
+     
+    <span class="token punctuation">[</span>expire<span class="token punctuation">]</span>
+    <span class="token punctuation">;</span> 预选的过期时间<span class="token punctuation">(</span>创建新的Paste时默认选择的过期时间<span class="token punctuation">)</span>，请确保这个值存在于<span class="token punctuation">[</span>expire_options<span class="token punctuation">]</span>中
+    <span class="token keyword">default</span> <span class="token operator">=</span> <span class="token double-quoted-string string">&quot;1week&quot;</span>
+     
+    <span class="token punctuation">;</span> <span class="token punctuation">(</span>可选<span class="token punctuation">)</span> 克隆按钮可以在过期的Pastes中关闭，但是请注意这只是隐藏了按钮，复制和粘贴还是可能的
+    <span class="token punctuation">;</span> <span class="token keyword">clone</span> <span class="token operator">=</span> <span class="token boolean constant">false</span>
+     
+    <span class="token punctuation">[</span>expire_options<span class="token punctuation">]</span>
+    <span class="token punctuation">;</span> 为每个过期的时间段设置具体的秒数，<span class="token number">0</span>代表永不过期
+    <span class="token number">5</span>min <span class="token operator">=</span> <span class="token number">300</span>
+    <span class="token number">10</span>min <span class="token operator">=</span> <span class="token number">600</span>
+    <span class="token number">1</span>hour <span class="token operator">=</span> <span class="token number">3600</span>
+    <span class="token number">1</span>day <span class="token operator">=</span> <span class="token number">86400</span>
+    <span class="token number">1</span>week <span class="token operator">=</span> <span class="token number">604800</span>
+    <span class="token punctuation">;</span> 这个一个月只有<span class="token number">30</span>天，所以不算准确
+    <span class="token number">1</span>month <span class="token operator">=</span> <span class="token number">2592000</span>
+    <span class="token number">1</span>year <span class="token operator">=</span> <span class="token number">31536000</span>
+    never <span class="token operator">=</span> <span class="token number">0</span>
+     
+    <span class="token punctuation">[</span>formatter_options<span class="token punctuation">]</span>
+    <span class="token punctuation">;</span> 设置可选的格式<span class="token punctuation">(</span>用于渲染和显示<span class="token punctuation">)</span>，它们的顺序和标签
+    plaintext <span class="token operator">=</span> <span class="token double-quoted-string string">&quot;Plain Text&quot;</span>
+    syntaxhighlighting <span class="token operator">=</span> <span class="token double-quoted-string string">&quot;Source Code&quot;</span>
+    markdown <span class="token operator">=</span> <span class="token double-quoted-string string">&quot;Markdown&quot;</span>
+     
+    <span class="token punctuation">[</span>traffic<span class="token punctuation">]</span>
+    <span class="token punctuation">;</span> 同一个<span class="token constant">IP</span>的访问频率限制，单位为秒，设为<span class="token number">0</span>代表禁用
+    limit <span class="token operator">=</span> <span class="token number">10</span>
+     
+    <span class="token punctuation">;</span> <span class="token punctuation">(</span>可选<span class="token punctuation">)</span> 如果你的网站运行在一个反代或者负载均衡之后，设置包含用户<span class="token constant">IP</span>的<span class="token constant">HTTP</span>头可以将用户正确的<span class="token constant">IP</span>传递给程序
+    <span class="token punctuation">;</span> header <span class="token operator">=</span> <span class="token double-quoted-string string">&quot;X_FORWARDED_FOR&quot;</span>
+     
+    <span class="token punctuation">;</span> 存储访问频率限制的目录
+    dir <span class="token operator">=</span> <span class="token constant">PATH</span> <span class="token double-quoted-string string">&quot;data&quot;</span>
+     
+    <span class="token punctuation">[</span>purge<span class="token punctuation">]</span>
+    <span class="token punctuation">;</span> 清除过期Paste的最小时间间隔，清除只会在创建Paste的时候触发，设为<span class="token number">0</span>代表每次创建都进行清除
+    limit <span class="token operator">=</span> <span class="token number">300</span>
+     
+    <span class="token punctuation">;</span> 清除过期Paste一次最多删除的Paste数量，设为<span class="token number">0</span>代表禁用清除。如果网站使用人数较多建议把这个值设置的稍微大点
+    batchsize <span class="token operator">=</span> <span class="token number">10</span>
+     
+    <span class="token punctuation">;</span> 存储清除频率限制的目录
+    dir <span class="token operator">=</span> <span class="token constant">PATH</span> <span class="token double-quoted-string string">&quot;data&quot;</span>
+     
+    <span class="token punctuation">[</span>model<span class="token punctuation">]</span>
+    <span class="token punctuation">;</span> 加载的模型类<span class="token punctuation">(</span>指定了把数据存哪<span class="token punctuation">)</span>，以及存储用的目录
+    <span class="token punctuation">;</span> 默认的模型<span class="token double-quoted-string string">&quot;Filesystem&quot;</span><span class="token punctuation">(</span>文件系统<span class="token punctuation">)</span>将所有数据都直接存储在文件中
+    <span class="token keyword">class</span> <span class="token operator">=</span> Filesystem
+    <span class="token punctuation">[</span>model_options<span class="token punctuation">]</span>
+    dir <span class="token operator">=</span> <span class="token constant">PATH</span> <span class="token double-quoted-string string">&quot;data&quot;</span>
+     
+    <span class="token punctuation">;</span><span class="token punctuation">[</span>model<span class="token punctuation">]</span>
+    <span class="token punctuation">;</span> 使用MySQL存储的配置示例
+    <span class="token punctuation">;</span><span class="token keyword">class</span> <span class="token operator">=</span> Database
+    <span class="token punctuation">;</span><span class="token punctuation">[</span>model_options<span class="token punctuation">]</span>
+    <span class="token punctuation">;</span>dsn <span class="token operator">=</span> <span class="token double-quoted-string string">&quot;mysql:host=localhost;dbname=privatebin;charset=UTF8&quot;</span>
+    <span class="token punctuation">;</span>tbl <span class="token operator">=</span> <span class="token double-quoted-string string">&quot;privatebin_&quot;</span> <span class="token punctuation">;</span> table prefix
+    <span class="token punctuation">;</span>usr <span class="token operator">=</span> <span class="token double-quoted-string string">&quot;privatebin&quot;</span>
+    <span class="token punctuation">;</span>pwd <span class="token operator">=</span> <span class="token double-quoted-string string">&quot;Z3r0P4ss&quot;</span>
+    <span class="token punctuation">;</span>opt<span class="token punctuation">[</span><span class="token number">12</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean constant">true</span> <span class="token punctuation">;</span> <span class="token constant">PDO</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">ATTR_PERSISTENT</span>
+     
+    <span class="token punctuation">;</span><span class="token punctuation">[</span>model<span class="token punctuation">]</span>
+    <span class="token punctuation">;</span> 使用SQLite存储的配置示例
+    <span class="token punctuation">;</span><span class="token keyword">class</span> <span class="token operator">=</span> Database
+    <span class="token punctuation">;</span><span class="token punctuation">[</span>model_options<span class="token punctuation">]</span>
+    <span class="token punctuation">;</span>dsn <span class="token operator">=</span> <span class="token double-quoted-string string">&quot;sqlite:&quot;</span> <span class="token constant">PATH</span> <span class="token double-quoted-string string">&quot;data/db.sq3&quot;</span>
+    <span class="token punctuation">;</span>usr <span class="token operator">=</span> <span class="token constant">null</span>
+    <span class="token punctuation">;</span>pwd <span class="token operator">=</span> <span class="token constant">null</span>
+    <span class="token punctuation">;</span>opt<span class="token punctuation">[</span><span class="token number">12</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean constant">true</span> <span class="token punctuation">;</span> <span class="token constant">PDO</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">ATTR_PERSISTENT</span>
+    <span class="token punctuation">;</span><span class="token punctuation">[</span>model<span class="token punctuation">]</span>
+    <span class="token punctuation">;</span> PostgreSQL数据库配置示例
+    <span class="token punctuation">;</span><span class="token keyword">class</span> <span class="token operator">=</span> Database
+    <span class="token punctuation">;</span><span class="token punctuation">[</span>model_options<span class="token punctuation">]</span>
+    <span class="token punctuation">;</span>dsn <span class="token operator">=</span> <span class="token double-quoted-string string">&quot;pgsql:host=localhost;dbname=privatebin&quot;</span>
+    <span class="token punctuation">;</span>tbl <span class="token operator">=</span> <span class="token double-quoted-string string">&quot;privatebin_&quot;</span> <span class="token punctuation">;</span> 表前缀
+    <span class="token punctuation">;</span>usr <span class="token operator">=</span> <span class="token double-quoted-string string">&quot;privatebin&quot;</span>
+    <span class="token punctuation">;</span>pwd <span class="token operator">=</span> <span class="token double-quoted-string string">&quot;Z3r0P4ss&quot;</span>
+    <span class="token punctuation">;</span>opt<span class="token punctuation">[</span><span class="token number">12</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean constant">true</span> <span class="token punctuation">;</span> <span class="token constant">PDO</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">ATTR_PERSISTENT</span>
+    
+    <span class="token punctuation">;</span><span class="token punctuation">[</span>model<span class="token punctuation">]</span>
+    <span class="token punctuation">;</span> Rados网关<span class="token operator">/</span><span class="token constant">CEPH</span>的<span class="token constant">S3</span>配置示例
+    <span class="token punctuation">;</span><span class="token keyword">class</span> <span class="token operator">=</span> S3Storage
+    <span class="token punctuation">;</span><span class="token punctuation">[</span>model_options<span class="token punctuation">]</span>
+    <span class="token punctuation">;</span>region <span class="token operator">=</span> <span class="token double-quoted-string string">&quot;&quot;</span>
+    <span class="token punctuation">;</span>version <span class="token operator">=</span> <span class="token double-quoted-string string">&quot;2006-03-01&quot;</span>
+    <span class="token punctuation">;</span>endpoint <span class="token operator">=</span> <span class="token double-quoted-string string">&quot;https://s3.my-ceph.invalid&quot;</span>
+    <span class="token punctuation">;</span>use_path_style_endpoint <span class="token operator">=</span> <span class="token boolean constant">true</span>
+    <span class="token punctuation">;</span>bucket <span class="token operator">=</span> <span class="token double-quoted-string string">&quot;my-bucket&quot;</span>
+    <span class="token punctuation">;</span>accesskey <span class="token operator">=</span> <span class="token double-quoted-string string">&quot;my-rados-user&quot;</span>
+    <span class="token punctuation">;</span>secretkey <span class="token operator">=</span> <span class="token double-quoted-string string">&quot;my-rados-pass&quot;</span>
+    
+    <span class="token punctuation">;</span><span class="token punctuation">[</span>model<span class="token punctuation">]</span>
+    <span class="token punctuation">;</span> <span class="token constant">AWS</span>的<span class="token constant">S3</span>配置示例
+    <span class="token punctuation">;</span><span class="token keyword">class</span> <span class="token operator">=</span> S3Storage
+    <span class="token punctuation">;</span><span class="token punctuation">[</span>model_options<span class="token punctuation">]</span>
+    <span class="token punctuation">;</span>region <span class="token operator">=</span> <span class="token double-quoted-string string">&quot;eu-central-1&quot;</span>
+    <span class="token punctuation">;</span>version <span class="token operator">=</span> <span class="token double-quoted-string string">&quot;latest&quot;</span>
+    <span class="token punctuation">;</span>bucket <span class="token operator">=</span> <span class="token double-quoted-string string">&quot;my-bucket&quot;</span>
+    <span class="token punctuation">;</span>accesskey <span class="token operator">=</span> <span class="token double-quoted-string string">&quot;access key id&quot;</span>
+    <span class="token punctuation">;</span>secretkey <span class="token operator">=</span> <span class="token double-quoted-string string">&quot;secret access key&quot;</span>
+    
+    <span class="token punctuation">;</span><span class="token punctuation">[</span>model<span class="token punctuation">]</span>
+    <span class="token punctuation">;</span> 使用<span class="token constant">AWS</span>的<span class="token constant">SDK</span>默认凭据提供程序的<span class="token constant">AWS</span>的<span class="token constant">S3</span>配置示例
+    <span class="token punctuation">;</span> 如果依赖于环境变量，<span class="token constant">AWS</span> <span class="token constant">SDK</span>将查找以下内容：
+    <span class="token punctuation">;</span> <span class="token operator">-</span> <span class="token constant">AWS_ACCESS_KEY_ID</span>
+    <span class="token punctuation">;</span> <span class="token operator">-</span> <span class="token constant">AWS_SECRET_ACCESS_KEY</span>
+    <span class="token punctuation">;</span> <span class="token operator">-</span> <span class="token constant">AWS_SESSION_TOKEN</span>（如果需要）
+    <span class="token punctuation">;</span> 有关详细信息，请参阅https<span class="token punctuation">:</span><span class="token comment">//docs.aws.amazon.com/sdk-for-php/v3/developer-guide/guide_credentials.html#default-credential-chain</span>
+    <span class="token punctuation">;</span><span class="token keyword">class</span> <span class="token operator">=</span> S3Storage
+    <span class="token punctuation">;</span><span class="token punctuation">[</span>model_options<span class="token punctuation">]</span>
+    <span class="token punctuation">;</span>region <span class="token operator">=</span> <span class="token double-quoted-string string">&quot;eu-central-1&quot;</span>
+    <span class="token punctuation">;</span>version <span class="token operator">=</span> <span class="token double-quoted-string string">&quot;latest&quot;</span>
+    <span class="token punctuation">;</span>bucket <span class="token operator">=</span> <span class="token double-quoted-string string">&quot;my-bucket&quot;</span>
+    
+    <span class="token punctuation">[</span>yourls<span class="token punctuation">]</span>
+    <span class="token punctuation">;</span> 当使用<span class="token constant">YOURLS</span>作为<span class="token double-quoted-string string">&quot;urlshortener&quot;</span>配置项时：
+    <span class="token punctuation">;</span> <span class="token operator">-</span> 默认情况下，<span class="token double-quoted-string string">&quot;urlshortener&quot;</span>将指向<span class="token constant">YOURLS</span> <span class="token constant">API</span> <span class="token constant">URL</span>，带有或不带有凭据，并且将在PrivateBin网页上公开显示。
+    <span class="token punctuation">;</span> 只有在允许无凭据创建短<span class="token constant">URL</span>时才使用此选项。
+    <span class="token punctuation">;</span> <span class="token operator">-</span> 或者，使用此部分中的参数（<span class="token double-quoted-string string">&quot;signature&quot;</span>和<span class="token double-quoted-string string">&quot;apiurl&quot;</span>），<span class="token double-quoted-string string">&quot;urlshortener&quot;</span>需要指向您的PrivateBin实例的基本<span class="token constant">URL</span>，并附加<span class="token double-quoted-string string">&quot;shortenviayourls?link=&quot;</span>。例如：
+    <span class="token punctuation">;</span> urlshortener <span class="token operator">=</span> <span class="token double-quoted-string string">&quot;${basepath}shortenviayourls?link=&quot;</span>
+    <span class="token punctuation">;</span> 然后，此<span class="token constant">URL</span>将在服务器端调用<span class="token constant">YOURLS</span>，使用来自<span class="token double-quoted-string string">&quot;apiurl&quot;</span>的<span class="token constant">URL</span>和来自下面的<span class="token double-quoted-string string">&quot;signature&quot;</span>参数的<span class="token double-quoted-string string">&quot;access signature&quot;</span>。
+    
+    <span class="token punctuation">;</span> （可选）<span class="token constant">YOURLS</span>为使用帐户颁发的<span class="token double-quoted-string string">&quot;signature&quot;</span>（访问密钥）
+    <span class="token punctuation">;</span> signature <span class="token operator">=</span> <span class="token double-quoted-string string">&quot;&quot;</span>
+    <span class="token punctuation">;</span> （可选）<span class="token constant">YOURLS</span> <span class="token constant">API</span>的<span class="token constant">URL</span>，用于缩短PrivateBin <span class="token constant">URL</span>
+    <span class="token punctuation">;</span> apiurl <span class="token operator">=</span> <span class="token double-quoted-string string">&quot;https://yourls.example.com/yourls-api.php&quot;</span>
+    
+</span></code></pre></div><p>​</p></div></div></div></article> <div class="row justify-content-center"><div class="col-md-9"><!----> <!----></div></div> <div class="row justify-content-center mt-40"><div class="col-md-8"><div class="post-meta"><!----> <!----> <div itemprop="keywords" class="post-meta-tags"><a href="/tag/🐘Linux" class="blog-tag" data-v-4217f36d> 🐘Linux </a><a href="/tag/🐋Docker" class="blog-tag" data-v-4217f36d> 🐋Docker </a><a href="/tag/💻闲置VPS利用计划" class="blog-tag" data-v-4217f36d> 💻闲置VPS利用计划 </a></div></div></div></div> <div class="sticker vuepress-toc"><div class="vuepress-toc-item vuepress-toc-h2 active"><a href="#💬前言" title="💬前言">💬前言</a></div><div class="vuepress-toc-item vuepress-toc-h2"><a href="#🌳项目介绍" title="🌳项目介绍">🌳项目介绍</a></div><div class="vuepress-toc-item vuepress-toc-h2"><a href="#🏠开始搭建" title="🏠开始搭建">🏠开始搭建</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#🐋安装docker，docker-compose并配置" title="🐋安装docker，docker-compose并配置">🐋安装docker，docker-compose并配置</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#🔪安装" title="🔪安装">🔪安装</a></div><div class="vuepress-toc-item vuepress-toc-h2"><a href="#📕后记" title="📕后记">📕后记</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#配置文件详解（仅供参考）" title="配置文件详解（仅供参考）">配置文件详解（仅供参考）</a></div></div></div></div> <footer class="themefooter"><div class="container"><div class="row justify-content-between"><div class="col"><span>记录一些基础但有用的玩机指南，还有我随心分享的各种内容，希望你能在这里找到你想要的</span></div> <div class="col text-right"><ul class="list-unstyled"><li class="contact-item"><a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="external"><TelegrameIcon></TelegrameIcon>
+              
+            </a></li><li class="contact-item"><a href="mailto:mail@yunieebk.com" class="external"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              
+            </a></li><li class="contact-item"><a href="https://www.yunieebk.com/" target="_blank" rel="noopener noreferrer" class="external"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+              
+            </a></li></ul> <ul class="list-unstyled"></ul></div></div></div></footer></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.24a469d2.js" defer></script><script src="/assets/js/6.c9fc6031.js" defer></script><script src="/assets/js/3.806a905d.js" defer></script><script src="/assets/js/20.c2a9e3a9.js" defer></script>
+  </body>
+</html>
